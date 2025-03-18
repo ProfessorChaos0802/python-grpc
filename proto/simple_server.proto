@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+service SimpleServer {
+    rpc GetText(SimpleMessage) returns (SimpleMessage) {}
+}
+
+message SimpleMessage {
+    string message = 1;
+}
