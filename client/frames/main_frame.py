@@ -1,23 +1,25 @@
-import tkinter as tk
-from .buttons_frame import ButtonsFrame
+from tkinter import ttk
+from .components_frame import ComponentsFrame
+from labels.title_label import TitleLabel
 
-class MainFrame(tk.Frame):
+class MainFrame(ttk.Frame):
     """
     Main Frame
     """
-    def __init__(self, parent, config, logger, stub):
-        super().__init__(parent)
+    def __init__(self, parent, logger, stub):
+        super().__init__(parent, style="Main.TFrame")
 
-        # Label at the top
-        self.label = tk.Label(self, text="Welcome to gRPC Client UI", font=("Arial", 14))
-        self.label.pack(pady=10)
-        self.config(
-            bg=config['appearance']['background_color'],
-        )
+        # Title Label
+        self.title_label = TitleLabel(self, text="Welcome to gRPC Client UI")
+        self.title_label.pack(pady=5)
 
         # Assign gRPC Stub
         self.stub = stub
 
-        # Add the buttons frame
-        self.buttons_frame = ButtonsFrame(self, self.stub)
-        self.buttons_frame.pack(pady=20)
+        # Frame for rest of the widgets
+        self.components_frame = ComponentsFrame(self, logger, self.stub)
+        self.components_frame.pack(fill="both", expand=True, pady=(5, 20), padx=20)
+
+        # # Add the buttons frame
+        # self.buttons_frame = ButtonsFrame(self, self.stub)
+        # self.buttons_frame.pack(pady=20)

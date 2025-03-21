@@ -1,2 +1,2 @@
 from .main_frame import MainFrame
-from .buttons_frame import ButtonsFrame
+from .components_frame import ComponentsFrame
